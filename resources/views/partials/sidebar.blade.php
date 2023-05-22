@@ -12,7 +12,7 @@
 
         <li class="nav-item">
             <a href="{{ route('admin.projects.index') }}"
-                class="nav-link {{ Route::currentRouteName() == 'admin.projects.index' ? 'active' : '' }}">
+                class="nav-link {{ Route::currentRouteName() == 'admin.projects.index' ? 'active' : '' }} {{ Route::currentRouteName() == 'admin.projects.create' ? 'active' : '' }} {{ Route::currentRouteName() == 'admin.projects.edit' ? 'active' : '' }} {{ Route::currentRouteName() == 'admin.projects.show' ? 'active' : '' }}">
                 <svg class="bi pe-none me-2" width="16" height="16">
                     <use xlink:href="#home"></use>
                 </svg>
