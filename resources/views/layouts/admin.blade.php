@@ -34,21 +34,6 @@
 
         <main>
             <div class="container-fluid">
-                @if ($errors->any())
-                    <div class="alert alert-danger mt-3">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li> {{ $error }} </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                @if (session('status'))
-                    <div class="alert alert-success mt-3">
-                        {{ session('status') }}
-                    </div>
-                @endif
 
                 <div class='row'>
                     <div class="col-2">
@@ -56,6 +41,9 @@
                     </div>
 
                     <div class="col-10">
+                        @include('partials.errors')
+                        @include('partials.messages')
+
                         @yield('content')
                     </div>
                 </div>

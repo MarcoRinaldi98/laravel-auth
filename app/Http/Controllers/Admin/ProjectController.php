@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
-use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -41,13 +40,16 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $form_data = $request->validated();
-        $form_data['slug'] = Project::generateSlug($form_data['title']);
+        $form_data['slug'] = Project::generateSlug($request->title);
 
-        $newProject = new Project();
+        /*
+        $checkProject = Project::where('slug', $form_data['slug'])->frist();
+        if ($checkProject) {
+            return back()->withInput()->withErrors(['slug', 'Impossibile creare lo slug per questo progetto, cambiare il titolo!']);
+        }
+        */
 
-        $newProject->fill($form_data);
-
-        $newProject->save();
+        $newProject = Project::create($form_data);
 
         return redirect()->route('admin.projects.show', ['project' => $newProject->slug])->with('status', 'Progetto creato con successo!');
     }
@@ -84,7 +86,14 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $form_data = $request->validated();
-        $project['slug'] = Project::generateSlug($form_data['title']);
+        $form_data['slug'] = Project::generateSlug($request->title);
+
+        /*
+        $checkProject = Project::where('slug', $form_data['slug'])->where('id', '<>', $project->id)->frist();
+        if ($checkProject) {
+            return back()->withInput()->withErrors(['slug', 'Impossibile creare lo slug']);
+        }
+        */
 
         $project->update($form_data);
 

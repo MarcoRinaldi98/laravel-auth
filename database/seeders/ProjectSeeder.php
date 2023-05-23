@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
