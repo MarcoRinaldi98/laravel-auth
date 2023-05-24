@@ -42,12 +42,12 @@ class ProjectController extends Controller
         $form_data = $request->validated();
         $form_data['slug'] = Project::generateSlug($request->title);
 
-        /*
-        $checkProject = Project::where('slug', $form_data['slug'])->frist();
+
+        $checkProject = Project::where('slug', $form_data['slug'])->first();
         if ($checkProject) {
             return back()->withInput()->withErrors(['slug', 'Impossibile creare lo slug per questo progetto, cambiare il titolo!']);
         }
-        */
+
 
         $newProject = Project::create($form_data);
 
@@ -88,12 +88,12 @@ class ProjectController extends Controller
         $form_data = $request->validated();
         $form_data['slug'] = Project::generateSlug($request->title);
 
-        /*
-        $checkProject = Project::where('slug', $form_data['slug'])->where('id', '<>', $project->id)->frist();
+
+        $checkProject = Project::where('slug', $form_data['slug'])->where('id', '<>', $project->id)->first();
         if ($checkProject) {
             return back()->withInput()->withErrors(['slug', 'Impossibile creare lo slug']);
         }
-        */
+
 
         $project->update($form_data);
 

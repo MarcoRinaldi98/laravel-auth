@@ -43,8 +43,9 @@
                     <div class="col-10">
                         @include('partials.errors')
                         @include('partials.messages')
-
-                        @yield('content')
+                        <div class="container-fluid">
+                            @yield('content')
+                        </div>
                     </div>
                 </div>
             </div>
